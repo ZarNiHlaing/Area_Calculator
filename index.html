@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css" />
+    <style>
+      .mb {
+        margin-bottom: 20px;
+      }
+
+      #result {
+        display: inline-block;
+        width: 200px;
+      }
+    </style>
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.css" />
+  </head>
+
+  <body>
+    <h1>Area calculator</h1>
+    <div class="mb">
+      <span>Result : </span> <span id="result"></span>
+      <button id="clear">clear</button>
+      <button id="store">store</button>
+    </div>
+    <input type="text" id="width" placeholder="Input width" />
+    <input type="text" id="breath" placeholder="Input breath" />
+    <button id="calc">Calculate</button>
+
+    <ul id="results"></ul>
+
+    <script>
+      
+      const inputwidth = document.getElementById("width");
+      const inputbreath = document.getElementById("breath");
+      const calc = document.getElementById("calc");
+      const resultElement = document.getElementById("result");
+      const clear = document.getElementById("clear");
+      const store = document.getElementById("store");
+      const results = document.getElementById("results");
+
+      calc.onclick = () => {
+        const result = inputwidth.value * inputbreath.value + "sqft";
+        resultElement.innerText = `${inputwidth.value}ft*${inputbreath.value}ft = ${result}`;
+        inputwidth.value = inputbreath.value = null;
+      };
+
+      clear.onclick = () => {
+        resultElement.innerText = null;
+      };
+      store.onclick = () => {
+        // results.innerHTML += `<li  class="animate__animated animate__bounce">${resultElement.innerText}</li>`;
+       
+
+        const li = document.createElement("li");
+        li.innerText = resultElement.innerText;
+        li.classList.add("animate__animated" , "animate__bounce");
+        results.append(li);
+        resultElement.innerText = null;
+      };
+    </script>
+  </body>
+</html>
